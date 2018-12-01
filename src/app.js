@@ -2,8 +2,7 @@ import React from "react";
 import { Form } from "./form.js";
 import { Delete}  from "./delete.js";
 import { Select } from "./select.js";
-import {  Axiossj } from "./axiossj.js";
-import axios from "axios";
+
 
 class App extends React.Component{
     constructor(props){
@@ -11,9 +10,7 @@ class App extends React.Component{
         this.state = {
             arr:["今天任务","明日学习","张三"], // 原本未完成的初始数据
             xin_arr:[],     // 临时存储 onChange的 数据
-            wcArr:['本周加班到9dian','数据量很大'],         // 存储完成的数据
-            axios_json:{},       // axios发送的数据
-            axios_arr:[],           // axios的数组数据
+            wcArr:['本周加班到9dian','数据量很大']         // 存储完成的数据
         }
     }
     tjWcx(id,e){
@@ -26,7 +23,7 @@ class App extends React.Component{
                 wcArr.splice(i,1);
                 arr.push(id);
                 this.setState({
-                   
+
                 })
             }
         }
@@ -57,8 +54,7 @@ class App extends React.Component{
                 arr.splice(i,1);
                 wcArr.push(id);
                 //console.log(wcArr,id);
-                this.setState({  
-                  
+                this.setState({      
                 })
             }
         }
@@ -72,25 +68,7 @@ class App extends React.Component{
         this.state.arr.push(tj_sj);   
         this.setState({
             
-        });
-        axios.get('https://www.easy-mock.com/mock/5bff7c57ec952807e8183f94/example/example')
-        .then((response) => {
-            //console.log(response.data);
-            
-          this.setState({
-            axios_json:response.data,
-            axios_arr:response.data.result    
-          });
-          //console.log(this.state.axios_json,this.state.axios_arr);
         })
-        .catch( (error) => {
-            console.log(error)
-          console.log(error);
-          this.setState({
-           
-          })
-        })
-    
     };
     /* 哇哇哇，终于成功取到数据了。。。 */
     render(){
@@ -105,7 +83,6 @@ class App extends React.Component{
                 ref='childRef'/>
                 <Delete arr={arr}  wcAdd = {this.wcAdd.bind(this)} scadd={this.scadd.bind(this)}/>
                 <Select wcArr1={wcArr1} tjWcx={this.tjWcx.bind(this)}/>
-                <Axiossj axios_json={this.state.axios_json} axios_arr={this.state.axios_arr}/>
             </div>
         )
     }
